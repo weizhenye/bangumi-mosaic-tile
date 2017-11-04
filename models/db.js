@@ -4,27 +4,28 @@ const config = require('../config.js');
 
 const datastore = Datastore(config.datastore);
 
-function genKey(username, type) {
-  return datastore.key(['User', username, 'Timeline', type]);
+function genKey(username, kind, type) {
+  return datastore.key(['User', username, kind, type]);
 }
 
-function get(username, type) {
-  const key = genKey(username, type);
+function get(username, kind, type) {
+  const key = genKey(username, kind, type);
   return datastore.get(key);
 }
 
-function upsert(username, type, data) {
-  const key = genKey(username, type);
+function upsert(username, kind, type, data) {
+  const key = genKey(username, kind, type);
   return datastore.upsert({ key, data });
 }
 
 function getAll(username) {
-  const keys = TIMELINE_TYPES.map(type => genKey(username, type));
+  const keys = TIMELINE_TYPES.map(type => genKey(username, 'Timeline', type));
   return datastore.get(keys);
 }
 
 module.exports = {
   datastore,
+  KEY: datastore.KEY,
   get,
   upsert,
   getAll,

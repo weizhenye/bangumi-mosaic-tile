@@ -16,17 +16,17 @@
 <main>
   <ul>
     {{#each timelines}}
-    <li class="timeline">
-      <div class="timeline-info">
-        <h2 class="timeline-type">{{name}}</h2>
-        <span class="timeline-total" title="过去一年">0</span>
-        <div class="timeline-links">
-          <a href="/users/{{../username}}/{{type}}.svg" target="_blank">SVG</a>
+    <li class="box">
+      <div class="box-info">
+        <h2 class="box-type">{{name}}</h2>
+        <span class="box-total" title="过去一年">0</span>
+        <div class="box-links">
+          <a href="/users/{{../username}}/timelines/{{type}}.svg" target="_blank">SVG</a>
           |
-          <a href="/users/{{../username}}/{{type}}.json" target="_blank">JSON</a>
+          <a href="/users/{{../username}}/timelines/{{type}}.json" target="_blank">JSON</a>
         </div>
       </div>
-      <div class="timeline-chart">{{{svg}}}</div>
+      <div class="box-chart">{{{svg}}}</div>
     </li>
     {{/each}}
   </ul>

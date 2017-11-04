@@ -1,4 +1,4 @@
-const spider = require('../lib/spider.js');
+const spider = require('../lib/spiders/timeline.js');
 const { transTimelines } = require('../lib/utils.js');
 const queue = require('../models/queue.js');
 const db = require('./db.js');
@@ -18,18 +18,17 @@ function mergeTimelines(sources, targets) {
 async function update(username, type, entity) {
   return spider(username, type, entity.until)
     .then(({ until, timelines }) => ({
-      type,
       lastUpdated: new Date(),
       until: until || entity.until,
       timelines: mergeTimelines(entity.timelines, timelines),
     }))
-    .then(data => db.upsert(username, type, data));
+    .then(data => db.upsert(username, 'Timeline', type, data));
 }
 
 function tryUpdate(username, type, entity = { lastUpdated: 0, until: '', timelines: [] }) {
   if (Date.now() - entity.lastUpdated > 8.64e7) {
     queue.push({
-      id: `${username}-${type}`,
+      id: `${username}/timelines/${type}`,
       fn: update,
       args: [username, type, entity],
     });
@@ -37,7 +36,7 @@ function tryUpdate(username, type, entity = { lastUpdated: 0, until: '', timelin
 }
 
 async function get(username, type) {
-  const [entity] = await db.get(username, type);
+  const [entity] = await db.get(username, 'Timeline', type);
   tryUpdate(username, type, entity);
   if (!entity) {
     return null;

@@ -21,19 +21,19 @@ ul {
   margin: auto;
   padding: 0;
 }
-.timeline {
+.box {
   padding: 32px 0;
   list-style: none;
 }
-.timeline:not(:last-child) {
+.box:not(:last-child) {
   border-bottom: 1px solid #ebedf0;
 }
-.timeline::after {
+.box::after {
   content: " ";
   display: block;
   clear: both;
 }
-.timeline-info {
+.box-info {
   width: 108px;
   height: 108px;
   font-size: 16px;
@@ -43,16 +43,16 @@ ul {
   border-right: 1px solid #ebedf0;
   float: left;
 }
-.timeline-type {
+.box-type {
   color: #cd1c2b;
   font-size: 24px;
   line-height: 60px;
   margin: 0;
 }
-.timeline-links {
+.box-links {
   color: #ebedf0;
 }
-.timeline-chart {
+.box-chart {
   width: 664px;
   height: 108px;
   box-sizing: border-box;

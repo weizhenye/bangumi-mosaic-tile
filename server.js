@@ -13,6 +13,7 @@ const config = require('./config.js');
 
 const UserController = require('./controllers/user.js');
 const TimelineController = require('./controllers/timeline.js');
+// const WikiController = require('./controllers/wiki.js');
 const QueueController = require('./controllers/queue.js');
 
 const app = new Koa();
@@ -51,8 +52,10 @@ app.use(async (ctx, next) => {
 });
 
 app.use(route.get('/users/:username', UserController.getHTML));
-app.use(route.get('/users/:username/:type.json', TimelineController.getJSON));
-app.use(route.get('/users/:username/:type.svg', TimelineController.getSVG));
+app.use(route.get('/users/:username/timelines/:type.json', TimelineController.getJSON));
+app.use(route.get('/users/:username/timelines/:type.svg', TimelineController.getSVG));
+// app.use(route.get('/users/:username/wikis/:type.json', WikiController.getJSON));
+// app.use(route.get('/users/:username/wikis/:type.svg', WikiController.getSVG));
 app.use(route.get('/queues', QueueController.get));
 
 app.listen(config.server, () => {

@@ -1,8 +1,8 @@
 /* eslint-disable */
-var $timelines = Array.prototype.slice.apply(document.querySelectorAll('.timeline'));
-$timelines.forEach(function ($timeline) {
+var $boxes = Array.prototype.slice.apply(document.querySelectorAll('.box'));
+$boxes.forEach(function ($box) {
   var total = 0;
-  var $rects = Array.prototype.slice.apply($timeline.querySelectorAll('svg rect'));
+  var $rects = Array.prototype.slice.apply($box.querySelectorAll('svg rect'));
   $rects.forEach(function ($rect, idx) {
     var count = $rect.getAttribute('data-count');
     var date = $rect.getAttribute('data-date');
@@ -22,5 +22,5 @@ $timelines.forEach(function ($timeline) {
       document.body.removeChild($tip);
     });
   });
-  $timeline.querySelector('.timeline-total').innerHTML = total;
+  $box.querySelector('.box-total').innerHTML = total;
 });
