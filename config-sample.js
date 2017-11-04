@@ -9,4 +9,6 @@ module.exports = {
     projectId: 'YOUR_PROJECT_ID',
     keyFilename: '/path/to/keyfile.json',
   },
+  // Google Analytics Tracking Code
+  ga: '',
 };

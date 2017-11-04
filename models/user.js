@@ -2,6 +2,7 @@ const genSVG = require('../lib/svg.js');
 const { TIMELINE_TYPES, TIMELINE_NAME, transTimelines } = require('../lib/utils.js');
 const db = require('./db.js');
 const { tryUpdate } = require('./timeline.js');
+const { ga } = require('../config.js');
 
 async function get(username) {
   const [entities] = await db.getAll(username);
@@ -18,6 +19,7 @@ async function get(username) {
     return null;
   }
   return {
+    ga,
     username,
     timelines,
   };

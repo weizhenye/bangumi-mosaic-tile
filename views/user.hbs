@@ -7,6 +7,7 @@
   <meta name="renderer" content="webkit">
   <title>{{username}} - Bangumi Mosaic Tile</title>
   <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" href="/assets/logo.png" type="image/x-icon">
 </head>
 <body>
 <header class="header">
@@ -35,5 +36,15 @@
   <a href="https://github.com/weizhenye/bangumi-mosaic-tile" target="_blank">GitHub</a>
 </footer>
 <script src="/assets/main.js"></script>
+{{#if ga}}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ga}}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '{{ga}}');
+</script>
+{{/if}}
 </body>
 </html>
