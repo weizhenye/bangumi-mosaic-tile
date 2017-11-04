@@ -1,0 +1,19 @@
+{
+  "extends": "airbnb-base",
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "function-paren-newline": ["error", "consistent"],
+    "no-bitwise": 0,
+    "no-console": 0,
+    "no-loop-func": 0,
+    "no-mixed-operators": 0,
+    "no-plusplus": 0,
+    "no-underscore-dangle": 0,
+    "object-curly-newline": ["error", {
+      "ObjectExpression": { "multiline": true, "consistent": true },
+      "ObjectPattern": { "multiline": true, "consistent": true }
+    }]
+  }
+}

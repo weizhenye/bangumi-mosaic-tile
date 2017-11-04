@@ -1,0 +1,47 @@
+{
+  "name": "bangumi-mosaic-tile",
+  "version": "0.0.0",
+  "description": "Mosaic tile chart for Bangumi.tv",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "pm2 start server.js -n bangumi-mosaic-tile",
+    "stop": "pm2 stop bangumi-mosaic-tile",
+    "lint": "eslint controllers lib models server.js config-sample.js",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weizhenye/bangumi-mosaic-tile.git"
+  },
+  "bugs": {
+    "url": "https://github.com/weizhenye/bangumi-mosaic-tile/issues"
+  },
+  "homepage": "https://github.com/weizhenye/bangumi-mosaic-tile",
+  "author": "Zhenye Wei",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">= 8"
+  },
+  "dependencies": {
+    "@google-cloud/datastore": "^1.1.0",
+    "cheerio": "^1.0.0-rc.2",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-compress": "^2.0.0",
+    "koa-conditional-get": "^2.0.0",
+    "koa-etag": "^3.0.0",
+    "koa-hbs": "^1.0.0",
+    "koa-mount": "^3.0.0",
+    "koa-route": "^3.2.0",
+    "koa-static": "^4.0.1",
+    "node-fetch": "^1.7.3",
+    "pm2": "^2.7.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.10.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  }
+}
