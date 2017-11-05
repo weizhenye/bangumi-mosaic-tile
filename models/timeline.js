@@ -17,11 +17,21 @@ function mergeTimelines(sources, targets) {
 
 async function update(username, type, entity) {
   return spider(username, type, entity.until)
-    .then(({ until, timelines }) => ({
-      lastUpdated: new Date(),
-      until: until || entity.until,
-      timelines: mergeTimelines(entity.timelines, timelines),
-    }))
+    .then(({ until, timelines }) => ([
+      {
+        name: 'lastUpdated',
+        value: new Date(),
+      },
+      {
+        name: 'until',
+        value: until || entity.until,
+      },
+      {
+        name: 'timelines',
+        value: mergeTimelines(entity.timelines, timelines),
+        excludeFromIndexes: true,
+      },
+    ]))
     .then(data => db.upsert(username, 'Timeline', type, data));
 }
 
