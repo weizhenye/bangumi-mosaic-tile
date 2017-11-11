@@ -13,11 +13,55 @@ a:hover {
 .footer {
   text-align: center;
 }
+.footer {
+  margin: 32px 0 8px 0;
+}
 .username {
   font-size: 20px;
 }
-ul {
+.radio-tabs {
   width: 772px;
+  margin: auto;
+}
+.radio-tabs:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+.radio-tabs label {
+  position: relative;
+}
+.radio-tabs label:first-child {
+  margin-left: 4px;
+}
+.radio-tab input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  position: absolute;
+}
+.radio-tab input ~ div {
+  color: #888;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 0 16px;
+}
+.radio-tab input:checked ~ div {
+  color: #f09199;
+  border-bottom: 2px solid #f09199;
+}
+.radio-tab input:checked ~ div ~ .type-list {
+  display: block;
+}
+.type-list {
+  width: 772px;
+  border: 1px solid #ebedf0;
+  border-radius: 4px;
+  float: left;
+  display: none;
   margin: auto;
   padding: 0;
 }
@@ -40,7 +84,6 @@ ul {
   line-height: 1.5;
   text-align: center;
   box-sizing: border-box;
-  border-right: 1px solid #ebedf0;
   float: left;
 }
 .box-type {

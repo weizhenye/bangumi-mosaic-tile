@@ -1,18 +1,27 @@
 const genSVG = require('../lib/svg.js');
-const { TIMELINE_TYPES, TIMELINE_NAME } = require('../lib/utils.js');
+const { KIND_MAP } = require('../lib/utils.js');
 const db = require('./db.js');
-const { tryUpdate } = require('./timeline.js');
+const { tryUpdate } = require('./kind.js');
 const { ga } = require('../config.js');
 
 async function get(username) {
   const [entities] = await db.getAll(username);
-  const timelines = TIMELINE_TYPES.map((type) => {
-    const entity = entities.find(e => e[db.KEY].name === type);
-    tryUpdate(username, type, entity);
+  const tabs = Object.keys(KIND_MAP).map((kind) => {
+    const kindObj = KIND_MAP[kind];
     return {
-      type,
-      name: TIMELINE_NAME[type],
-      svg: entity ? genSVG(entity.data) : '',
+      name: kindObj.name,
+      checked: kind === 'Timeline',
+      types: Object.keys(kindObj.type).map((type) => {
+        const entity = entities.find(e => e[db.KEY].kind === kind && e[db.KEY].name === type);
+        tryUpdate(username, kind, type, entity);
+        return {
+          type,
+          kind: `${kind.toLowerCase()}s`,
+          name: kindObj.type[type],
+          lastUpdated: entity ? entity.lastUpdated.toISOString() : '',
+          svg: entity ? genSVG(entity.data) : '',
+        };
+      }),
     };
   });
   if (!entities.length) {
@@ -21,7 +30,7 @@ async function get(username) {
   return {
     ga,
     username,
-    timelines,
+    tabs,
   };
 }
 

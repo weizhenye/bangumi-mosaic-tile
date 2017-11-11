@@ -15,22 +15,30 @@
   <div class="username">{{username}}</div>
 </header>
 <main>
-  <ul>
-    {{#each timelines}}
-    <li class="box">
-      <div class="box-info">
-        <h2 class="box-type">{{name}}</h2>
-        <span class="box-total" title="过去一年">0</span>
-        <div class="box-links">
-          <a href="/users/{{../username}}/timelines/{{type}}.svg" target="_blank">SVG</a>
-          |
-          <a href="/users/{{../username}}/timelines/{{type}}.json" target="_blank">JSON</a>
-        </div>
-      </div>
-      <div class="box-chart">{{{svg}}}</div>
-    </li>
+  <div class="radio-tabs">
+    {{#each tabs}}
+    <label class="radio-tab">
+      <input type="radio" name="kind" {{#if checked}}checked{{/if}}>
+      <div>{{name}}</div>
+      <ul class="type-list">
+        {{#each types}}
+        <li class="box">
+          <div class="box-info">
+            <h2 class="box-type">{{name}}</h2>
+            <span class="box-total" title="过去一年">0</span>
+            <div class="box-links">
+              <a href="/users/{{../../username}}/{{kind}}/{{type}}.svg" target="_blank">SVG</a>
+              |
+              <a href="/users/{{../../username}}/{{kind}}/{{type}}.json" target="_blank">JSON</a>
+            </div>
+          </div>
+          <div class="box-chart">{{{svg}}}</div>
+        </li>
+        {{/each}}
+      </ul>
+    </label>
     {{/each}}
-  </ul>
+  </div>
 </main>
 <footer class="footer">
   <a href="https://github.com/weizhenye/bangumi-mosaic-tile" target="_blank">GitHub</a>

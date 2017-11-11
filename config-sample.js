@@ -3,6 +3,10 @@ module.exports = {
     host: '0.0.0.0',
     port: process.env.PORT || 9199,
   },
+  queue: {
+    interval: 30 * 1e3,
+    limit: 1000,
+  },
   // Google Cloud Datastore
   // See https://github.com/GoogleCloudPlatform/google-cloud-node#cloud-datastore-ga
   datastore: {

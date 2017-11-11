@@ -1,5 +1,5 @@
 const Datastore = require('@google-cloud/datastore');
-const { TIMELINE_TYPES } = require('../lib/utils.js');
+const { KIND_MAP } = require('../lib/utils.js');
 const config = require('../config.js');
 
 const datastore = Datastore(config.datastore);
@@ -19,7 +19,13 @@ function upsert(username, kind, type, data) {
 }
 
 function getAll(username) {
-  const keys = TIMELINE_TYPES.map(type => genKey(username, 'Timeline', type));
+  const keys = [].concat(
+    ...Object.keys(KIND_MAP)
+      .map(kind => (
+        Object.keys(KIND_MAP[kind].type)
+          .map(type => genKey(username, kind, type))
+      )),
+  );
   return datastore.get(keys);
 }
 
