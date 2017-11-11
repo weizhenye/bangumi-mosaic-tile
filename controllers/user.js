@@ -1,7 +1,7 @@
 const UserModel = require('../models/user.js');
 
 async function getHTML(ctx, username) {
-  const data = await UserModel.get(username);
+  const data = await UserModel.get(username.toLowerCase());
   if (!data) {
     // TODO: 404 page?
     ctx.throw(404);
