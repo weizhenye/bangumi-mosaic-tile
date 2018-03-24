@@ -25,9 +25,9 @@
     "node": ">= 8"
   },
   "dependencies": {
-    "@google-cloud/datastore": "^1.1.0",
+    "@google-cloud/datastore": "^1.4.0",
     "cheerio": "^1.0.0-rc.2",
-    "koa": "^2.4.1",
+    "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
     "koa-compress": "^2.0.0",
     "koa-conditional-get": "^2.0.0",
@@ -35,13 +35,13 @@
     "koa-hbs": "^1.0.0",
     "koa-mount": "^3.0.0",
     "koa-route": "^3.2.0",
-    "koa-static": "^4.0.1",
-    "node-fetch": "^1.7.3",
-    "pm2": "^2.7.2"
+    "koa-static": "^4.0.2",
+    "node-fetch": "^2.1.1",
+    "pm2": "^2.10.1"
   },
   "devDependencies": {
-    "eslint": "^4.11.0",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0"
+    "eslint-plugin-import": "^2.9.0"
   }
 }
