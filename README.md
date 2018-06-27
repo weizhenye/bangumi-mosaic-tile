@@ -1,6 +1,8 @@
 # Bangumi Mosaic Tile
 
-[![Bangumi Mosaic Tile](https://bangumi-mosaic-tile.herokuapp.com/users/woozy/timelines/progress.svg)](https://bangumi-mosaic-tile.herokuapp.com/users/woozy)
+[![Bangumi Mosaic Tile](https://bangumi-mosaic-tile.now.sh/users/woozy/timelines/progress.svg)](https://bangumi-mosaic-tile.now.sh/users/woozy)
+
+https://bgm.tv/group/topic/344198
 
 ## Develop & Deploy
 

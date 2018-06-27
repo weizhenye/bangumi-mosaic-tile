@@ -61,7 +61,7 @@ function addTip($container) {
   });
 }
 
-const API_ORIGIN = 'https://bangumi-mosaic-tile.herokuapp.com';
+const API_ORIGIN = 'https://bangumi-mosaic-tile.now.sh';
 function getTimelineApi(type) {
   return `${API_ORIGIN}/users/${username}/timelines/${type}.svg`;
 }

@@ -4,9 +4,7 @@
   "description": "Mosaic tile chart for Bangumi.tv",
   "main": "server.js",
   "scripts": {
-    "dev": "node server.js",
-    "start": "pm2 start server.js -n bangumi-mosaic-tile",
-    "stop": "pm2 stop bangumi-mosaic-tile",
+    "start": "node server.js",
     "lint": "eslint controllers lib models server.js config-sample.js",
     "test": "npm run lint"
   },
@@ -36,8 +34,7 @@
     "koa-mount": "^3.0.0",
     "koa-route": "^3.2.0",
     "koa-static": "^4.0.2",
-    "node-fetch": "^2.1.1",
-    "pm2": "^2.10.1"
+    "node-fetch": "^2.1.1"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
