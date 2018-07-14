@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "lint": "eslint controllers lib models server.js config-sample.js",
+    "lint": "eslint controllers lib models app.js server.js config-sample.js",
     "test": "npm run lint"
   },
   "repository": {
@@ -20,25 +20,25 @@
   "license": "MIT",
   "private": true,
   "engines": {
-    "node": ">= 8"
+    "node": "8"
   },
   "dependencies": {
-    "@google-cloud/datastore": "^1.4.0",
+    "@google-cloud/datastore": "^1.4.1",
     "cheerio": "^1.0.0-rc.2",
-    "koa": "^2.5.0",
-    "koa-bodyparser": "^4.2.0",
-    "koa-compress": "^2.0.0",
+    "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-compress": "^3.0.0",
     "koa-conditional-get": "^2.0.0",
     "koa-etag": "^3.0.0",
     "koa-hbs": "^1.0.0",
     "koa-mount": "^3.0.0",
     "koa-route": "^3.2.0",
-    "koa-static": "^4.0.2",
-    "node-fetch": "^2.1.1"
+    "koa-static": "^5.0.0",
+    "node-fetch": "^2.1.2"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.9.0"
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0"
   }
 }
