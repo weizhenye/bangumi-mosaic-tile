@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bangumi Mosaic Tile</title>
+<link rel="icon" href="/public/logo.png" type="image/x-icon">
+<style>
+body {
+  margin: 0;
+}
+a {
+  color: #9199f0;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.header,
+.footer {
+  text-align: center;
+}
+.footer {
+  margin: 32px 0;
+}
+.footer a:not(:last-child) {
+  padding-right: 32px;
+}
+.username {
+  font-size: 20px;
+}
+.radio-tabs {
+  width: 772px;
+  margin: auto;
+}
+.radio-tabs:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+.radio-tabs label:first-child {
+  margin-left: 4px;
+}
+.radio-tab input {
+  display: none;
+}
+.radio-tab input ~ div {
+  color: #888;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 0 16px;
+}
+.radio-tab input:checked ~ div {
+  color: #f09199;
+  border-bottom: 2px solid #f09199;
+}
+.radio-tab input:checked ~ div ~ .type-list {
+  display: block;
+}
+.type-list {
+  width: 772px;
+  border: 1px solid #ebedf0;
+  border-radius: 4px;
+  float: left;
+  display: none;
+  margin: auto;
+  padding: 0;
+}
+tile-box:not(:last-child) {
+  border-bottom: 1px solid #ebedf0;
+}
+.svg-tip {
+  font-family: Courier;
+  position: fixed;
+  z-index: 99999;
+  padding: 10px;
+  font-size: 12px;
+  color: #959da5;
+  text-align: center;
+  background: rgba(0,0,0,0.8);
+  border-radius: 3px;
+}
+.svg-tip::after {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  box-sizing: border-box;
+  margin: 0 0 0 -5px;
+  content: " ";
+  border: 5px solid transparent;
+  border-top-color: rgba(0,0,0,0.8);
+}
+.svg-tip strong {
+  color: #dfe2e5;
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <h1>Bangumi Mosaic Tile</h1>
+  <div class="username"></div>
+</header>
+<main class="radio-tabs">
+  <label class="radio-tab">
+    <input type="radio" name="kind" checked>
+    <div class="name">时间胶囊</div>
+    <ul class="type-list" data-kind="timelines"></ul>
+  </label>
+  <label class="radio-tab">
+    <input type="radio" name="kind">
+    <div class="name">维基</div>
+    <ul class="type-list" data-kind="wikis"></ul>
+  </label>
+  <!-- <label class="radio-tab">
+    <input type="radio" name="kind">
+    <div class="name">自定义</div>
+  </label> -->
+</main>
+<footer class="footer">
+  <a href="https://github.com/weizhenye/bangumi-mosaic-tile" target="_blank">GitHub</a>
+  <a href="https://bgm.tv/group/topic/344198" target="_blank">Bangumi 讨论</a>
+</footer>
+<template id="template-tile-box">
+<style>
+:host {
+  padding: 16px 0;
+  display: flex;
+}
+a {
+  color: #9199f0;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.info {
+  flex: 0 0 108px;
+  height: 108px;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+}
+.type {
+  color: #cd1c2b;
+  font-size: 24px;
+  line-height: 60px;
+  margin: 0;
+}
+.chart {
+  width: 648px;
+  height: 108px;
+  padding: 0 8px;
+}
+</style>
+<div class="info">
+  <h2 class="type"></h2>
+  <span class="total" title="过去一年">0</span>
+  <div class="links">
+    <a target="_blank" class="link-svg">SVG</a>
+    <a target="_blank" class="link-json">JSON</a>
+  </div>
+</div>
+<div class="chart"></div>
+</template>
+<script src="/public/users.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-34447075-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-34447075-4');
+</script>
+</body>
+</html>

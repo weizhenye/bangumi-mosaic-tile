@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/users/([^/]+)",
+      "dest": "/public/users.html"
+    },
+    {
+      "src": "/users/(?<username>[^/]+)/(?<kind>[^/]+)/(?<type>[^/.]+).(?<ext>[^/]+)",
+      "dest": "/api/tile.js?username=$username&kind=$kind&type=$type&ext=$ext"
+    }
+  ]
+}

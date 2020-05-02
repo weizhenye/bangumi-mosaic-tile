@@ -14,7 +14,7 @@ a:hover {
   text-align: center;
 }
 .footer {
-  margin: 32px 0 8px 0;
+  margin: 32px 0;
 }
 .footer a:not(:last-child) {
   padding-right: 32px;
@@ -31,17 +31,11 @@ a:hover {
   display: block;
   clear: both;
 }
-.radio-tabs label {
-  position: relative;
-}
 .radio-tabs label:first-child {
   margin-left: 4px;
 }
 .radio-tab input {
-  width: 0;
-  height: 0;
-  opacity: 0;
-  position: absolute;
+  display: none;
 }
 .radio-tab input ~ div {
   color: #888;

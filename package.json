@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "lint": "eslint controllers lib models app.js server.js config-sample.js",
+    "lint": "eslint controllers lib models app.js server.js config.js",
     "test": "npm run lint"
   },
   "repository": {
