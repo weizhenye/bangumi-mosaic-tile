@@ -12,7 +12,7 @@ async function get(username) {
       name: kindObj.name,
       checked: kind === 'Timeline',
       types: Object.keys(kindObj.type).map((type) => {
-        const entity = entities.find(e => e[db.KEY].kind === kind && e[db.KEY].name === type);
+        const entity = entities.find((e) => e[db.KEY].kind === kind && e[db.KEY].name === type);
         tryUpdate(username, kind, type, entity);
         return {
           type,

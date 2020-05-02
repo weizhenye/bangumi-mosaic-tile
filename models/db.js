@@ -1,8 +1,8 @@
-const Datastore = require('@google-cloud/datastore');
+const { Datastore } = require('@google-cloud/datastore');
 const { KIND_MAP } = require('../lib/utils.js');
 const config = require('../config.js');
 
-const datastore = Datastore(config.datastore);
+const datastore = new Datastore(config.datastore);
 
 function genKey(username, kind, type) {
   return datastore.key(['User', username, kind, type]);
@@ -21,9 +21,9 @@ function upsert(username, kind, type, data) {
 function getAll(username) {
   const keys = [].concat(
     ...Object.keys(KIND_MAP)
-      .map(kind => (
+      .map((kind) => (
         Object.keys(KIND_MAP[kind].type)
-          .map(type => genKey(username, kind, type))
+          .map((type) => genKey(username, kind, type))
       )),
   );
   return datastore.get(keys);

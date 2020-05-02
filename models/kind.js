@@ -1,4 +1,4 @@
-const queue = require('../models/queue.js');
+const queue = require('./queue.js');
 const db = require('./db.js');
 const sTimeline = require('../lib/spiders/timeline.js');
 const sWiki = require('../lib/spiders/wiki.js');
@@ -7,18 +7,18 @@ const spider = { Timeline: sTimeline, Wiki: sWiki };
 
 async function update(username, kind, type, entity) {
   return spider[kind](username, type, entity.lastUpdated)
-    .then(result => ([
+    .then((result) => ([
       {
         name: 'lastUpdated',
         value: new Date(),
       },
       {
         name: 'data',
-        value: Object.assign({}, entity.data, result),
+        value: { ...entity.data, ...result },
         excludeFromIndexes: true,
       },
     ]))
-    .then(data => db.upsert(username, kind, type, data));
+    .then((data) => db.upsert(username, kind, type, data));
 }
 
 function tryUpdate(username, kind, type, entity = { lastUpdated: 0, data: {} }) {
@@ -33,11 +33,7 @@ function tryUpdate(username, kind, type, entity = { lastUpdated: 0, data: {} }) 
 
 async function get(username, kind, type) {
   const [entity] = await db.get(username, kind, type);
-  tryUpdate(username, kind, type, entity);
-  if (!entity) {
-    return null;
-  }
-  return entity.data;
+  return entity;
 }
 
 module.exports = {

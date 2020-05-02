@@ -49,8 +49,7 @@ app.use(async (ctx, next) => {
 });
 
 app.use(route.get('/users/:username', UserController.getHTML));
-app.use(route.get('/users/:username/:kind/:type.json', KindController.getJSON));
-app.use(route.get('/users/:username/:kind/:type.svg', KindController.getSVG));
+app.use(route.get('/users/:username/:kind/:type.:ext', KindController.get));
 app.use(route.get('/queues', QueueController.get));
 
 module.exports = app;
