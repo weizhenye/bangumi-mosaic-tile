@@ -121,3 +121,51 @@ if (username) {
     });
   });
 }
+
+Object.keys(KIND_MAP).forEach((key) => {
+  const { name, type } = KIND_MAP[key];
+  const $g = document.createElement('optgroup');
+  $g.setAttribute('label', name);
+  Object.keys(type).forEach((t) => {
+    const $o = document.createElement('option');
+    if (t === 'progress') $o.selected = true;
+    $o.value = `${key}/${t}`;
+    $o.textContent = type[t];
+    $g.appendChild($o);
+  });
+  document.querySelector('.type-selector').appendChild($g);
+});
+
+[...document.querySelectorAll('.custom input[type="date"]')].forEach(($el) => {
+  // eslint-disable-next-line no-param-reassign
+  $el.max = new Date(Date.now() + 2.88e7).toISOString().slice(0, 10);
+});
+
+function customRender() {
+  const kindType = document.querySelector('.type-selector').value;
+  const direction = [...document.querySelectorAll('.custom input[name="direction"]')]
+    .find(($el) => $el.checked).value;
+  const begin = document.querySelector('.custom input[data-key="begin"]').value;
+  const end = document.querySelector('.custom input[data-key="end"]').value;
+  const params = new URLSearchParams();
+  params.append('direction', direction);
+  params.append('begin', begin);
+  params.append('end', end);
+  const url = `${window.location.origin}/users/${username}/${kindType}.svg?${params.toString()}`;
+  document.querySelector('.custom .link').href = url;
+  document.querySelector('.custom .link pre').textContent = url;
+  fetch(url)
+    .then((res) => {
+      if (res.ok) return res.text();
+      throw res;
+    })
+    .then((svg) => {
+      document.querySelector('.custom .chart').innerHTML = svg;
+      const $rects = [...document.querySelectorAll('.custom .chart svg rect')];
+      $rects.forEach(addTip);
+    });
+}
+
+document.querySelector('.render-custom').addEventListener('click', () => {
+  customRender();
+});
