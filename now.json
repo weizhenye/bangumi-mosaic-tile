@@ -3,7 +3,7 @@
   "routes": [
     {
       "src": "/users/([^/]+)",
-      "dest": "/public/users.html"
+      "dest": "/users.html"
     },
     {
       "src": "/users/(?<username>[^/]+)/(?<kind>[^/]+)/(?<type>[^/.]+).(?<ext>[^/]+)",

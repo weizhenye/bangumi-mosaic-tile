@@ -24,15 +24,14 @@ async function get(ctx, username, _kind, _type, _ext) {
   const [kind, type, ext] = intercept(_kind, _type, _ext);
   const entity = await KindModel.get(username, kind, type);
   KindModel.tryUpdate(username, kind, type, entity);
-  const { data } = entity;
-  if (!data) {
+  if (!entity) {
     ctx.throw(404);
   }
   if (ext === 'svg') {
-    ctx.body = genSVG(data);
+    ctx.body = genSVG(entity.data);
     ctx.type = 'svg';
   } else {
-    ctx.body = data;
+    ctx.body = entity.data;
   }
   ctx.status = 200;
 }

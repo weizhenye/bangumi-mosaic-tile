@@ -7,15 +7,16 @@ module.exports = async (req, res) => {
   try {
     const { username, kind, type, ext, begin, end, direction } = req.query;
     const [_kind, _type, _ext] = KindController.intercept(kind, type, ext);
-    const { data } = await KindModel.get(username, _kind, _type);
     fetch(`https://bangumi-mosaic-tile.herokuapp.com/users/${username}/${_kind}s/${_type}.json`).catch(() => {});
+    const entity = await KindModel.get(username, _kind, _type);
+    if (!entity) throw new Error(404);
     res.setHeader('Cache-Control', 'max-age=86400');
     res.setHeader('Access-Control-Allow-Origin', '*');
     if (_ext === 'svg') {
       res.setHeader('Content-Type', 'image/svg+xml');
-      res.send(genSVG(data, { begin, end, direction }));
+      res.send(genSVG(entity.data, { begin, end, direction }));
     } else {
-      res.json(data);
+      res.json(entity.data);
     }
   } catch (err) {
     res.status(404);
