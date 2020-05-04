@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
     const { username, kind, type, ext, begin, end, direction } = req.query;
     const [_kind, _type, _ext] = KindController.intercept(kind, type, ext);
     const { data } = await KindModel.get(username, _kind, _type);
-    fetch(`https://bangumi-mosaic-tile.herokuapp.com/users/${username}/${kind}s/${type}.json`).catch(() => {});
+    fetch(`https://bangumi-mosaic-tile.herokuapp.com/users/${username}/${_kind}s/${_type}.json`).catch(() => {});
     res.setHeader('Cache-Control', 'max-age=86400');
     res.setHeader('Access-Control-Allow-Origin', '*');
     if (_ext === 'svg') {
