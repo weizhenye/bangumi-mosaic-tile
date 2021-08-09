@@ -61,7 +61,7 @@ function addTip($container) {
   });
 }
 
-const API_ORIGIN = 'https://bangumi-mosaic-tile.now.sh';
+const API_ORIGIN = 'https://bangumi-mosaic-tile.aho.im';
 function getTimelineApi(type) {
   return `${API_ORIGIN}/users/${username}/timelines/${type}.svg`;
 }
@@ -70,7 +70,7 @@ function getWikiApi(type) {
 }
 function request(url) {
   return fetch(url)
-    .then(res => (
+    .then((res) => (
       res.status >= 200 && res.status < 300
         ? res.text()
         : Promise.reject(res)
@@ -92,13 +92,13 @@ if (['subject', 'mono', 'blog', 'index'].includes(page)) {
 if (page === 'timeline') {
   insertAfter('#columnTimelineInnerB .TsukkmiBox')('');
   Array.prototype.slice.apply(document.querySelectorAll('#timelineTabs li a'))
-    .filter($btn => $btn.search)
+    .filter(($btn) => $btn.search)
     .forEach(($btn) => {
       $btn.addEventListener('click', () => {
         const type = $btn.search
           .slice(1)
           .split('&')
-          .map(pair => pair.split('='))
+          .map((pair) => pair.split('='))
           .find(([key]) => key === 'type')
           .pop();
         request(getTimelineApi(type))
