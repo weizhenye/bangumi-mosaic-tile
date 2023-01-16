@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   try {
     const { username, kind, type, ext, begin, end, direction } = req.query;
     const [_kind, _type, _ext] = KindController.intercept(kind, type, ext);
-    fetch(`https://bangumi-mosaic-tile.herokuapp.com/users/${username}/${_kind}s/${_type}.json`).catch(() => {});
+    fetch(`https://bangumi-mosaic-tile.fly.dev/users/${username}/${_kind}s/${_type}.json`).catch(() => {});
     const entity = await KindModel.get(username, _kind, _type);
     if (!entity) throw new Error(404);
     res.setHeader('Cache-Control', 'max-age=86400');

@@ -15,6 +15,7 @@
     "object-curly-newline": ["error", {
       "ObjectExpression": { "multiline": true, "consistent": true },
       "ObjectPattern": { "multiline": true, "consistent": true }
-    }]
+    }],
+    "import/extensions": 0
   }
 }
